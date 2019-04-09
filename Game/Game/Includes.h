@@ -1,0 +1,13 @@
+#include <vector>
+#include <math.h>
+#include <map>
+#include <time.h>
+#include <iostream>
+#include <list>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/OpenGL.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <Windows.h>
