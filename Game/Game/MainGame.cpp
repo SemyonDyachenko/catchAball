@@ -1,12 +1,12 @@
 ﻿#include "Includes.h"
 #include "Camera.h"
 #include "menu.h"
-#include "Player.h"
+#include "engine/Player.h"
 #include "LifeBar.h"
-#include "Level.h"
-#include "TextureLoader.h"
-#include "MusicLoader.h"
-#include "SoundLoader.h"
+#include "engine/Level.h"
+#include "engine/TextureLoader.h"
+#include "engine/MusicLoader.h"
+#include "engine/SoundLoader.h"
 
 using namespace sf;
 

@@ -131,13 +131,13 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Includes.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="engine\Level.h" />
     <ClInclude Include="LifeBar.h" />
     <ClInclude Include="menu.h" />
-    <ClInclude Include="MusicLoader.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="SoundLoader.h" />
-    <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="engine\MusicLoader.h" />
+    <ClInclude Include="engine\Player.h" />
+    <ClInclude Include="engine\SoundLoader.h" />
+    <ClInclude Include="engine\TextureLoader.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
     <ClInclude Include="TinyXML\tinystr.h" />

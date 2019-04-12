@@ -47,12 +47,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TinyXML\tinystr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,14 +71,20 @@
     <ClInclude Include="Includes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextureLoader.h">
+    <ClInclude Include="engine\MusicLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MusicLoader.h">
+    <ClInclude Include="engine\SoundLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SoundLoader.h">
+    <ClInclude Include="engine\TextureLoader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\Player.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
