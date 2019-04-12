@@ -5,17 +5,18 @@
 #include "LifeBar.h"
 #include "Level.h"
 #include <list>
+#include "TextureLoader.h"
 
 
 using namespace sf;
 
-
+//constans
+const int window_width = 800;
+const int window_height = 600;
 
 
 int main() {
-	const int window_width = 800;
-	const int window_height =600;
-
+	
 	RenderWindow window(VideoMode(window_width, window_height), "Enchanted world");
 	menu(window);
 	window.setFramerateLimit(60);
@@ -30,12 +31,7 @@ int main() {
 
 
 	//background 
-	Image img;
-	img.loadFromFile("../res/images/gamebg.png");
-	Texture back;
-	back.loadFromImage(img);
-	Sprite background(back);
-
+	TextureLoader background("gamebg.png");
 
 	//sound
 	Music music;
@@ -132,7 +128,7 @@ int main() {
 		//changeview();
 
 		//draw
-		window.draw(background);
+		background.Draw(window);
 		level.Draw(window);
 		lifeBarForPlayer.draw(window);
 		window.draw(p.sprite);

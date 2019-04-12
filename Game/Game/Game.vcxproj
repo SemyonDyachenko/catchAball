@@ -135,6 +135,7 @@
     <ClInclude Include="LifeBar.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
