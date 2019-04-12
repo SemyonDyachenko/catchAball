@@ -4,9 +4,9 @@
 #include "Player.h"
 #include "LifeBar.h"
 #include "Level.h"
-#include <list>
 #include "TextureLoader.h"
-
+#include "MusicLoader.h"
+#include "SoundLoader.h"
 
 using namespace sf;
 
@@ -34,17 +34,12 @@ int main() {
 	TextureLoader background("gamebg.png");
 
 	//sound
-	Music music;
-	music.openFromFile("../res/music/music1.ogg");
-	music.setVolume(15);
-	music.setLoop(true);
-	music.play();
+	MusicLoader music("music1",15);
+	//music.StartPlay();
 
-	SoundBuffer soundBuffer;
-	soundBuffer.loadFromFile("../res/music/go.ogg");
-	Sound sound(soundBuffer);
-	sound.setLoop(true);
-	sound.setVolume(9);
+	//sound
+	SoundLoader goin("go", 20);
+	goin.SetLoop(true);
 	bool f = false;
 
 
@@ -52,7 +47,7 @@ int main() {
 	window.setMouseCursorVisible(false); 
 
 	//created player
-	Player p("hero.png", 10,440, level, 80.0, 83.5);
+	Player p("hero.png", 10,400, level, 96.0, 98.0);
 	
 	//time
 	Clock clock;
@@ -79,7 +74,7 @@ int main() {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
 					if (!f) {
 						f = true;
-						sound.play();
+						goin.sound.play();
 					}
 				}
 			}
@@ -87,7 +82,7 @@ int main() {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
 					if (f) {
 						f = false;
-						sound.stop();
+						goin.sound.stop();
 					}
 				}
 			}

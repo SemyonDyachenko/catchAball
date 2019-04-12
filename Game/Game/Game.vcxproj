@@ -134,7 +134,9 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LifeBar.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="MusicLoader.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SoundLoader.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="tinystr.h" />
     <ClInclude Include="tinyxml.h" />

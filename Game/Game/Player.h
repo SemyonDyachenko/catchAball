@@ -13,22 +13,23 @@ public:
 	float  w, h, dx, dy, speed = 0;
 	int dir = 0;
 	bool isMove, isSelect, onGround;
-	String FILE;
+	String file;
 	Image img;
 	Texture t;
 	Sprite sprite;
-	Player(String F, float X, float Y, Level &lvl, float W, float H)
+	Player(String file, float x, float y, Level &lvl, float w, float h)
 	{
 		dx = 0; dy = 0; speed = 0; dir = 0;  obj = lvl.GetAllObjects();
 		isMove = false; isSelect = false;
-		w = W; h = H;
-		FILE = F;
-		img.loadFromFile("../res/images/" + F);
+		this->w = w; 
+		this->h = h;
+		this->file = file;
+		img.loadFromFile("../res/images/" + file);
 		img.createMaskFromColor(Color(255, 255, 255));
 		t.loadFromImage(img);
 		sprite.setTexture(t);
-		x = X; y = Y;
-		sprite.setTextureRect(IntRect(0, 134, w, h));
+		this->x = x; this->y = y;
+		sprite.setTextureRect(IntRect(w,h, w, h));
 		sprite.setOrigin(w / 2, h / 2);
 
 	}
