@@ -12,7 +12,7 @@ public:
 	std::vector<Object> obj;
 	float  w, h, dx, dy, speed = 0;
 	int dir = 0;
-	bool isMove, isSelect, onGround;
+	bool onGround;
 	String file;
 	Image img;
 	Texture t;
@@ -20,7 +20,7 @@ public:
 	Player(String file, float x, float y, Level &lvl, float w, float h)
 	{
 		dx = 0; dy = 0; speed = 0; dir = 0;  obj = lvl.GetAllObjects();
-		isMove = false; isSelect = false;
+		onGround = false;
 		this->w = w; 
 		this->h = h;
 		this->file = file;
@@ -29,7 +29,7 @@ public:
 		t.loadFromImage(img);
 		sprite.setTexture(t);
 		this->x = x; this->y = y;
-		sprite.setTextureRect(IntRect(w,h, w, h));
+		sprite.setTextureRect(IntRect(0,192, w, h));
 		sprite.setOrigin(w / 2, h / 2);
 
 	}
@@ -40,9 +40,9 @@ public:
 	{
 		switch (dir)
 		{
-		case 0: dx = speed; dy = 0; break;
-		case 1: dx = -speed; dy = 0; break;
-		case 2: break;
+		case 0: dx = speed; break;
+		case 1: dx = -speed;break;
+		case 2:  break;
 		case 3: break;
 		}
 		//if(y == )
@@ -52,6 +52,8 @@ public:
 		checkCollisionWithMap();
 		speed = 0; 
 		sprite.setPosition(x+w/2, y+h/2);
+
+		if (!onGround) { dy = dy + 0.0015*time; }
 
 	}
 
@@ -68,8 +70,8 @@ public:
 			{
 				if (obj[i].name == "colis")//если встретили препятствие
 				{
-					if (dy > 0) { y = obj[i].rect.top - h; onGround = true; }
-					if (dy < 0) { y = obj[i].rect.top + obj[i].rect.height;  }
+					if (dy > 0) { y = obj[i].rect.top - h; onGround = true; dy = 0; }
+					if (dy < 0) { y = obj[i].rect.top + obj[i].rect.height; dy = 0; }
 					if (dx > 0) { x = obj[i].rect.left - w; }
 					if (dx < 0) { x = obj[i].rect.left + obj[i].rect.width; }
 

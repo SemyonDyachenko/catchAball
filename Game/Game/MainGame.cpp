@@ -24,35 +24,32 @@ int main() {
 	
 	//map
 	Level level;
-	level.LoadFromFile("images/test.tmx");
+	level.LoadFromFile("../res/map.tmx");
 
 	//lifebar
 	LifeBar lifeBarForPlayer;
-
 
 	//background 
 	TextureLoader background("gamebg.png");
 
 	//sound
-	MusicLoader music("music1",15);
-	//music.StartPlay();
+	MusicLoader music("music",15);
+	music.StartPlay();
 
 	//sound
 	SoundLoader goin("go", 20);
 	goin.SetLoop(true);
 	bool f = false;
 
-
 	//cursor visible
 	window.setMouseCursorVisible(false); 
 
 	//created player
-	Player p("hero.png", 10,400, level, 96.0, 98.0);
-	
+	Player p("hero.png", 70,312, level, 96.0, 84.0);
+
 	//time
 	Clock clock;
 	float CurrentFrame = 0;
-
 	while (window.isOpen())
 	{
 		float time = clock.getElapsedTime().asMicroseconds();
@@ -68,7 +65,6 @@ int main() {
 				window.close();
 			}
 			
-			
 
 			if (event.type == Event::KeyPressed) {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
@@ -77,7 +73,7 @@ int main() {
 						goin.sound.play();
 					}
 				}
-			}
+			}else 
 			if (event.type == Event::KeyReleased) {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
 					if (f) {
@@ -91,24 +87,24 @@ int main() {
 
 		//keyboard
 		if (Keyboard::isKeyPressed(Keyboard::A)) {
-			p.dir = 1; p.speed = 0.1;
-			CurrentFrame += 0.005*time;
-			if (CurrentFrame > 3) CurrentFrame -= 3;
-			p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 96, 72.0, 76.0));
-			getPlayerCoord(p.getPositionX(), p.getPositionY());
-
+				p.dir = 1; p.speed = 0.1;
+				CurrentFrame += 0.005*time;
+				if (CurrentFrame > 3) CurrentFrame -= 3;
+				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 94, 72.0, 76.0));
+				getPlayerCoord(p.getPositionX(), p.getPositionY());
+			
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::D)) {
-			p.dir = 0; p.speed = 0.1;
-			CurrentFrame += 0.005*time;
-			if (CurrentFrame > 3) CurrentFrame -= 3;
-			p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 192, 72.0, 76.0));
-			getPlayerCoord(p.getPositionX(), p.getPositionY());
-
+		if (Keyboard::isKeyPressed(Keyboard::D)) {
+				p.dir = 0; p.speed = 0.1;
+				CurrentFrame += 0.005*time;
+				if (CurrentFrame > 3) CurrentFrame -= 3;
+				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 192, 72.0, 76.0));
+				getPlayerCoord(p.getPositionX(), p.getPositionY());
+			
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Space)) {
-			p.sprite.move(-0.5, 0);
-		}
+		 if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			 p.dir = 2; p.dy = -0.4; p.speed = 0.1; p.onGround = false; 
+		 }
 
 
 		//update
@@ -120,7 +116,6 @@ int main() {
 
 		//camera
 		window.setView(view);
-		//changeview();
 
 		//draw
 		background.Draw(window);
