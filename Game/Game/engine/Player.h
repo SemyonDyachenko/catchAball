@@ -42,24 +42,24 @@ public:
 		{
 		case 0: dx = speed; break;
 		case 1: dx = -speed;break;
-		case 2:  break;
+		case 2: break; // чтобы можно было во время прыжка идти вперед то нужно здесь убрать dx = 0;  но при этом почему то будет возращать в начало координат.
 		case 3: break;
 		}
-		//if(y == )
+		
 		x += dx * time;
 		checkCollisionWithMap();
 		y += dy * time;
 		checkCollisionWithMap();
-		speed = 0; 
+		speed = 0;
 		sprite.setPosition(x+w/2, y+h/2);
-
 		if (!onGround) { dy = dy + 0.0015*time; }
-
+		
+		
 	}
 
 
 	FloatRect getRect() {
-		return FloatRect(x, y, w, h);
+	return FloatRect(x, y, w, h);
 	}
 
 
@@ -72,16 +72,12 @@ public:
 				{
 					if (dy > 0) { y = obj[i].rect.top - h; onGround = true; dy = 0; }
 					if (dy < 0) { y = obj[i].rect.top + obj[i].rect.height; dy = 0; }
-					if (dx > 0) { x = obj[i].rect.left - w; }
-					if (dx < 0) { x = obj[i].rect.left + obj[i].rect.width; }
+					if (dx > 0) { x = obj[i].rect.left - w; dx = 0; }
+					if (dx < 0) { x = obj[i].rect.left + obj[i].rect.width; dx = 0;}
 
 				}
 			}
 	}
-
-
-
-
 
 
 
@@ -92,11 +88,6 @@ public:
 	float getPositionY() {
 		return y;
 	}
-
-
-
-	
-
 
 };
 

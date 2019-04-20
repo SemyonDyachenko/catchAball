@@ -68,5 +68,8 @@
     <ClInclude Include="engine\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="engine\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Camera.h" />
+    <ClInclude Include="engine\Entity.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="engine\Level.h" />
     <ClInclude Include="LifeBar.h" />

@@ -7,21 +7,22 @@
 #include "engine/TextureLoader.h"
 #include "engine/MusicLoader.h"
 #include "engine/SoundLoader.h"
+#include "engine/Entity.h"
 
 using namespace sf;
 
 //constans
-const int window_width = 800;
-const int window_height = 600;
+ int window_width = 800;
+ int window_height = 600;
 
 
 int main() {
-	
+
 	RenderWindow window(VideoMode(window_width, window_height), "Enchanted world");
 	menu(window);
 	window.setFramerateLimit(60);
 	view.reset(FloatRect(0, 0, window_width / 1.2, window_height / 1.2));
-	
+
 	//map
 	Level level;
 	level.LoadFromFile("../res/map.tmx");
@@ -29,9 +30,9 @@ int main() {
 	//lifebar
 	LifeBar lifeBarForPlayer;
 
-	//background 
-	TextureLoader background("gamebg.png");
-
+	//background
+	TextureLoader background("gamebg1.png");
+	
 	//sound
 	MusicLoader music("music",15);
 	music.StartPlay();
@@ -42,10 +43,12 @@ int main() {
 	bool f = false;
 
 	//cursor visible
-	window.setMouseCursorVisible(false); 
+	window.setMouseCursorVisible(false);
 
-	//created player
+	//objects
 	Player p("hero.png", 70,312, level, 96.0, 84.0);
+	Entity enemy("enemy", "golem/golem1", 100, 10, 100, 312, true, true);
+	//
 
 	//time
 	Clock clock;
@@ -64,7 +67,7 @@ int main() {
 			if (event.type == Event::Closed) {
 				window.close();
 			}
-			
+
 
 			if (event.type == Event::KeyPressed) {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
@@ -73,7 +76,7 @@ int main() {
 						goin.sound.play();
 					}
 				}
-			}else 
+			}else
 			if (event.type == Event::KeyReleased) {
 				if (event.key.code == Keyboard::A || event.key.code == Keyboard::D || event.key.code == Keyboard::W || event.key.code == Keyboard::S) {
 					if (f) {
@@ -92,7 +95,7 @@ int main() {
 				if (CurrentFrame > 3) CurrentFrame -= 3;
 				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 94, 72.0, 76.0));
 				getPlayerCoord(p.getPositionX(), p.getPositionY());
-			
+
 		}
 		if (Keyboard::isKeyPressed(Keyboard::D)) {
 				p.dir = 0; p.speed = 0.1;
@@ -100,16 +103,19 @@ int main() {
 				if (CurrentFrame > 3) CurrentFrame -= 3;
 				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 192, 72.0, 76.0));
 				getPlayerCoord(p.getPositionX(), p.getPositionY());
-			
+
 		}
-		 if (Keyboard::isKeyPressed(Keyboard::Space)) {
-			 p.dir = 2; p.dy = -0.4; p.speed = 0.1; p.onGround = false; 
+		if (Keyboard::isKeyPressed(Keyboard::Space) && (p.onGround == true)) {
+			p.dir = 2; p.dy = -0.4;  p.onGround = false; 
 		 }
+
+
+		
 
 
 		//update
 		p.update(time);
-		lifeBarForPlayer.update(100);
+
 
 		//clear
 		window.clear();
@@ -122,7 +128,9 @@ int main() {
 		level.Draw(window);
 		lifeBarForPlayer.draw(window);
 		window.draw(p.sprite);
+
 		window.display();
+
 	}
 
 	system("pause");
