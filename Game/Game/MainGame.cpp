@@ -8,6 +8,8 @@
 #include "engine/MusicLoader.h"
 #include "engine/SoundLoader.h"
 #include "engine/Entity.h"
+#include "Box2D/Box2D.h"
+
 
 using namespace sf;
 
@@ -15,6 +17,7 @@ using namespace sf;
  int window_width = 800;
  int window_height = 600;
 
+ 
 
 int main() {
 
@@ -26,6 +29,8 @@ int main() {
 	//map
 	Level level;
 	level.LoadFromFile("../res/map.tmx");
+
+	
 
 	//lifebar
 	LifeBar lifeBarForPlayer;
