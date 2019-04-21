@@ -19,7 +19,7 @@ private:
 	Sprite sprite;
 	int dir;
 public:
-	Entity(std::string name,std::string file,int hp,int damage,float x,float y,bool isLife,bool enemy)
+	Entity(std::string name, std::string file, int hp, int damage, float x, float y, bool isLife, bool enemy)
 	{
 		this->name = name;
 		this->file = file;
@@ -35,6 +35,17 @@ public:
 		sprite.setTexture(texture);
 		dir = 0;
 		speed = 1.0;
+	}
+
+
+	void Draw(RenderWindow &window)
+	{
+		window.draw(sprite);
+	}
+
+	void Mask(float red, float green, float blue)
+	{
+		image.createMaskFromColor(Color(red, green, blue));
 	}
 };
 

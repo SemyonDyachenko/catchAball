@@ -76,10 +76,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\game\git\Game\packages\Box2D.2.3.0\src\native\Build\vs2015\bin\x32\Debug;C:\game\git\Game\packages\Box2D.2.3.0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>.\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\game\git\Game\packages\Box2D.2.3.0;C:\game\git\Game\packages\Box2D.2.3.0\src\native\Build\vs2015\bin\x32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Box2D.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -155,6 +155,7 @@
     <Import Project="..\packages\sfml_graphics.2.5.1\build\native\sfml_graphics.targets" Condition="Exists('..\packages\sfml_graphics.2.5.1\build\native\sfml_graphics.targets')" />
     <Import Project="..\packages\sfml_audio.redist.2.5.1\build\native\sfml_audio.redist.targets" Condition="Exists('..\packages\sfml_audio.redist.2.5.1\build\native\sfml_audio.redist.targets')" />
     <Import Project="..\packages\sfml_audio.2.5.1\build\native\sfml_audio.targets" Condition="Exists('..\packages\sfml_audio.2.5.1\build\native\sfml_audio.targets')" />
+    <Import Project="..\packages\Box2D.2.3.0\build\native\Box2D.targets" Condition="Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -170,5 +171,6 @@
     <Error Condition="!Exists('..\packages\sfml_graphics.2.5.1\build\native\sfml_graphics.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml_graphics.2.5.1\build\native\sfml_graphics.targets'))" />
     <Error Condition="!Exists('..\packages\sfml_audio.redist.2.5.1\build\native\sfml_audio.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml_audio.redist.2.5.1\build\native\sfml_audio.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sfml_audio.2.5.1\build\native\sfml_audio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml_audio.2.5.1\build\native\sfml_audio.targets'))" />
+    <Error Condition="!Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D.2.3.0\build\native\Box2D.targets'))" />
   </Target>
 </Project>
