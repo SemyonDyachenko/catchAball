@@ -11,6 +11,7 @@
 #include "../packages/Box2D.2.3.0/src/native/Box2D/Box2D.h"
 
 
+
 using namespace sf;
 
 //constans
@@ -21,13 +22,13 @@ using namespace sf;
 int main() {
 	//window width
 	Vector2u winsize;
-	winsize.x = 1920;
-	winsize.y = 1080;
+	winsize.x = 800;
+	winsize.y = 600;
 
 	RenderWindow window(VideoMode(winsize.x,winsize.y), "Enchanted world");
 	menu(window);
-	window.setFramerateLimit(60);
-	view.reset(FloatRect(0, 0, winsize.x / 1.2, winsize.y / 1.2));
+	window.setFramerateLimit(120);
+	view.reset(FloatRect(0, 0, winsize.x / 1.5, winsize.y / 1.5));
 
 	//map
 	Level level;
@@ -39,12 +40,16 @@ int main() {
 	LifeBar lifeBarForPlayer;
 
 	//background
-	TextureLoader background("gamebg.png");
+	TextureLoader background("gamebg1.png");
+
+	//objects
+	TextureLoader box("elements/box.png");
+
 
 	
 	//sound
 	MusicLoader music("music",15);
-	//music.StartPlay();
+	music.StartPlay();
 
 	//sound
 	SoundLoader goin("go", 20);
@@ -55,7 +60,9 @@ int main() {
 	window.setMouseCursorVisible(false);
 
 	//objects
-	Player p("hero.png", 140,312, level, 96.0, 84.0);
+	Player p("hero.png", 140,312, level, 96.0, 84.0,lifeBarForPlayer,100,10);
+	Entity enemy("enemy", "golem/golem1", 100, 10, 190, 312, 100, 125, true, true,255,255,255);
+	
 	
 	//
 
@@ -76,6 +83,7 @@ int main() {
 			if (event.type == Event::Closed) {
 				window.close();
 			}
+			
 
 
 			if (event.type == Event::KeyPressed) {
@@ -100,32 +108,47 @@ int main() {
 	
 		//keyboard
 		if (Keyboard::isKeyPressed(Keyboard::A)) {
-			p.state = p.LEFT; p.speed = 0.1;
-				CurrentFrame += 0.005*time;
-				if (CurrentFrame > 3) CurrentFrame -= 3;
-				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 94, 72.0, 76.0));
-				getPlayerCoord(p.getPositionX(), p.getPositionY());
-
+			p.state = p.LEFT;
+			CurrentFrame += 0.005*time;
+			if (CurrentFrame > 3) CurrentFrame -= 3;
+			p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 94, 72.0, 76.0));
+			getPlayerCoord(p.getPositionX(), p.getPositionY());
+			if (!(Keyboard::isKeyPressed(Keyboard::LShift))) {
+				p.speed = 0.1;
+			}
+			else {
+				p.speed = 0.15;
+			}
 		} else 
-		if (Keyboard::isKeyPressed(Keyboard::D)) {
-				p.state =p.RIGHT; p.speed = 0.1;
+			if (Keyboard::isKeyPressed(Keyboard::D)) {
+				p.state = p.RIGHT;
 				CurrentFrame += 0.005*time;
 				if (CurrentFrame > 3) CurrentFrame -= 3;
 				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 192, 72.0, 76.0));
 				getPlayerCoord(p.getPositionX(), p.getPositionY());
+				if (!(Keyboard::isKeyPressed(Keyboard::LShift)))
+				{
+					p.speed = 0.1;
+				}
+				else {
+					p.speed = 0.15;
+				}
 
 		} 
 		if (Keyboard::isKeyPressed(Keyboard::Space) && (p.onGround)) {
-			p.state = p.JUMP; p.dy = -0.4;  p.onGround = false; 
+			p.state = p.JUMP; p.dy = -0.6;  p.onGround = false; 
+			getPlayerCoord(p.getPositionX(), p.getPositionY());
 		 }
 
-	//	getPlayerCoord(p.getPositionX(), p.getPositionY());
+		getPlayerCoord(p.getPositionX(), p.getPositionY());
 		
-
-
+		/*if (p.hp == 0) {
+			menu(window);
+		}*/
+		
 		//update
 		p.update(time);
-
+		lifeBarForPlayer.update(p.hp);
 
 		//clear
 		window.clear();
@@ -138,7 +161,7 @@ int main() {
 		level.Draw(window);
 		lifeBarForPlayer.draw(window);
 		window.draw(p.sprite);
-		//enemy.Draw(window);
+		enemy.Draw(window);
 		window.display();
 
 	}

@@ -1,6 +1,7 @@
 #pragma once
 #include "Includes.h"
 #include "Level.h"
+#include "../LifeBar.h"
 
 using namespace sf;
 
@@ -19,8 +20,11 @@ public:
 	Image img;
 	Texture t;
 	Sprite sprite;
-	Player(String file, float x, float y, Level &lvl, float w, float h)
+	int hp;
+	int damage;
+	Player(String file, float x, float y, Level &lvl, float w, float h,LifeBar bar,int hp,int damage)
 	{
+		this->hp = hp; this->damage = damage;
 		dx = 0; dy = 0; speed = 0; state = STAND;  obj = lvl.GetAllObjects();
 		onGround = false;
 		this->w = w; 
@@ -32,7 +36,9 @@ public:
 		sprite.setTexture(t);
 		this->x = x; this->y = y;
 		sprite.setTextureRect(IntRect(0,192, w, h));
-
+		if (hp > 100 || hp < 0) {
+			std::cout << "error of initialization healt point" << std::endl;
+		} 
 	}
 
 
@@ -53,10 +59,14 @@ public:
 		checkCollisionWithMap(dy,0);
 		speed = 0;
 		sprite.setPosition(x, y);
-		if (!onGround) { dy = dy + 0.0015*time; checkCollisionWithMap(dy,dx); }
-	
-	
+		dy = dy + 0.0015*time; checkCollisionWithMap(dy, dx);
 
+
+		if (y > 320) { hp = 0; }
+		if (hp == 0) {
+			std::cout << "Player is dead"<<std::endl;
+		}
+		
 		
 		
 	}
@@ -78,7 +88,7 @@ public:
 					if (Dy < 0) { y = obj[i].rect.top + obj[i].rect.height; dy = 0; }
 					if (Dx > 0) { x = obj[i].rect.left - w; dx = 0; }
 					if (Dx < 0) { x = obj[i].rect.left + obj[i].rect.width; dx = 0;}
-
+					
 				}
 				else {
 					onGround = false;
