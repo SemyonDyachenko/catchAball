@@ -25,7 +25,7 @@ int main() {
 	winsize.x = 800;
 	winsize.y = 600;
 
-	RenderWindow window(VideoMode(winsize.x,winsize.y), "Enchanted world");
+	RenderWindow window(VideoMode(winsize.x,winsize.y), "Game by Semyon");
 	menu(window);
 	window.setFramerateLimit(120);
 	view.reset(FloatRect(0, 0, winsize.x / 1.5, winsize.y / 1.5));

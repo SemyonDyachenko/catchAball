@@ -27,7 +27,7 @@ void menu(RenderWindow & window) {
 
 				menuNum = 0;
 
-			if (IntRect(300, 180, 300, 50).contains(Mouse::getPosition(window))) { menuNum = 1; }
+			if (IntRect(300, 180, 300, 50).contains(Mouse::getPosition(window))) { menuNum = 1;}
 			if (IntRect(300, 240, 300, 50).contains(Mouse::getPosition(window))) { menuNum = 2; }
 			if (IntRect(300, 300, 300, 50).contains(Mouse::getPosition(window))) { menuNum = 3; }
 
