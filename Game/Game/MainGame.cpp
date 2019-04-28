@@ -7,7 +7,6 @@
 #include "engine/TextureLoader.h"
 #include "engine/MusicLoader.h"
 #include "engine/SoundLoader.h"
-#include "engine/Entity.h"
 #include "../packages/Box2D.2.3.0/src/native/Box2D/Box2D.h"
 
 
@@ -24,29 +23,34 @@ int main() {
 	Vector2u winsize;
 	winsize.x = 800;
 	winsize.y = 600;
+	const float CameraSizeX = winsize.x / 1.5;
+	const float CameraSizeY = winsize.y / 1.5;
 
+	//render//**************************
 	RenderWindow window(VideoMode(winsize.x,winsize.y), "Game by Semyon");
 	menu(window);
 	window.setFramerateLimit(120);
-	view.reset(FloatRect(0, 0, winsize.x / 1.5, winsize.y / 1.5));
+	view.reset(FloatRect(0, 0, CameraSizeX, CameraSizeY));
 
 	//map
 	Level level;
-	level.LoadFromFile("../res/map.tmx");
+	level.LoadFromFile("map.tmx");	
 
-	
-
-	//lifebar
+	//lifebars
 	LifeBar lifeBarForPlayer;
 
+
+	//objects
+	Object player = level.GetObjectA("player");
+	Player p("hero.png", player.rect.left, player.rect.top, level, 96.0, 84.0, lifeBarForPlayer);
 	//background
-	TextureLoader background("gamebg1.png");
+	TextureLoader background("background.png");
+
+	
 
 	//objects
 	TextureLoader box("elements/box.png");
 
-
-	
 	//sound
 	MusicLoader music("music",15);
 	music.StartPlay();
@@ -59,13 +63,8 @@ int main() {
 	//cursor visible
 	window.setMouseCursorVisible(false);
 
-	//objects
-	Player p("hero.png", 140,312, level, 96.0, 84.0,lifeBarForPlayer,100,10);
-	Entity enemy("enemy", "golem/golem1", 100, 10, 190, 312, 100, 125, true, true,255,255,255);
-	
-	
 	//
-
+	
 	//time
 	Clock clock;
 	float CurrentFrame = 0;
@@ -107,11 +106,12 @@ int main() {
 
 	
 		//keyboard
+		if(p.life) {
 		if (Keyboard::isKeyPressed(Keyboard::A)) {
 			p.state = p.LEFT;
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
-			p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 94, 72.0, 76.0));
+			p.sprite.setTextureRect(IntRect(91 * int(CurrentFrame), 90, 70.0, 76.0));
 			getPlayerCoord(p.getPositionX(), p.getPositionY());
 			if (!(Keyboard::isKeyPressed(Keyboard::LShift))) {
 				p.speed = 0.1;
@@ -124,7 +124,7 @@ int main() {
 				p.state = p.RIGHT;
 				CurrentFrame += 0.005*time;
 				if (CurrentFrame > 3) CurrentFrame -= 3;
-				p.sprite.setTextureRect(IntRect(94 * int(CurrentFrame), 192, 72.0, 76.0));
+				p.sprite.setTextureRect(IntRect(91 * int(CurrentFrame), 188, 70.0, 76.0));
 				getPlayerCoord(p.getPositionX(), p.getPositionY());
 				if (!(Keyboard::isKeyPressed(Keyboard::LShift)))
 				{
@@ -136,22 +136,23 @@ int main() {
 
 		} 
 		if (Keyboard::isKeyPressed(Keyboard::Space) && (p.onGround)) {
-			p.state = p.JUMP; p.dy = -0.6;  p.onGround = false; 
+			p.state = p.JUMP; p.dy = -0.5;  p.onGround = false; 
 			getPlayerCoord(p.getPositionX(), p.getPositionY());
 		 }
+		}
 
 		getPlayerCoord(p.getPositionX(), p.getPositionY());
-		
-		/*if (p.hp == 0) {
-			menu(window);
-		}*/
+		//
+
+
+	
 		
 		//update
 		p.update(time);
 		lifeBarForPlayer.update(p.hp);
-
+		
 		//clear
-		window.clear();
+		window.clear(Color(113, 229, 242));
 
 		//camera
 		window.setView(view);
@@ -161,7 +162,7 @@ int main() {
 		level.Draw(window);
 		lifeBarForPlayer.draw(window);
 		window.draw(p.sprite);
-		enemy.Draw(window);
+		box.Draw(window);
 		window.display();
 
 	}

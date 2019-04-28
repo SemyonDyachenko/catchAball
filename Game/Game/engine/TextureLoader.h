@@ -23,6 +23,12 @@ public:
 
 	}
 
+	void SetOrigin(float x, float y)
+	{
+		sprite.setOrigin(x, y);
+			
+	}
+
 	void SetPosition(int x,int y)
 	{
 		sprite.setPosition(x, y);
