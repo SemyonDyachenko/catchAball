@@ -5,9 +5,16 @@ using namespace sf;
 
 View view;
 
-View getPlayerCoord(float x, float y) {
+View getPlayerCoord(float x, float y,float WinX,float WinY) {
 	float tempX = x;
-	if (x < 300) tempX = 300;
+	float mediumX;
+	if (WinX <= 800) {
+		mediumX = WinX / 2.6;
+	}
+	else {
+		mediumX = WinX / 2.833333;
+	}
+	if (x < mediumX) { tempX = mediumX; }
 	view.setCenter(tempX, y);
 	return view;
 }

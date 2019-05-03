@@ -21,20 +21,19 @@ using namespace sf;
 int main() {
 	//window width
 	Vector2u winsize;
-	winsize.x = 800;
-	winsize.y = 600;
+	winsize.x = 1920;
+	winsize.y = 1080;
 	const float CameraSizeX = winsize.x / 1.5;
 	const float CameraSizeY = winsize.y / 1.5;
-
 	//render//**************************
-	RenderWindow window(VideoMode(winsize.x,winsize.y), "Game by Semyon");
+	RenderWindow window(VideoMode(winsize.x, winsize.y), "Game by Semyon", Style::Fullscreen);
 	menu(window);
 	window.setFramerateLimit(120);
 	view.reset(FloatRect(0, 0, CameraSizeX, CameraSizeY));
 
 	//map
 	Level level;
-	level.LoadFromFile("map.tmx");	
+	level.LoadFromFile("../Debug/map.tmx");	
 
 	//lifebars
 	LifeBar lifeBarForPlayer;
@@ -64,6 +63,7 @@ int main() {
 	window.setMouseCursorVisible(false);
 
 	//
+
 	
 	//time
 	Clock clock;
@@ -73,6 +73,7 @@ int main() {
 		float time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
 		time = time / 800;
+		
 
 		Vector2i pixelPos = Mouse::getPosition(window);
 		Vector2f pos = window.mapPixelToCoords(pixelPos);
@@ -112,7 +113,7 @@ int main() {
 			CurrentFrame += 0.005*time;
 			if (CurrentFrame > 3) CurrentFrame -= 3;
 			p.sprite.setTextureRect(IntRect(91 * int(CurrentFrame), 90, 70.0, 76.0));
-			getPlayerCoord(p.getPositionX(), p.getPositionY());
+			getPlayerCoord(p.getPositionX(), p.getPositionY(),winsize.x,winsize.y);
 			if (!(Keyboard::isKeyPressed(Keyboard::LShift))) {
 				p.speed = 0.1;
 			}
@@ -125,7 +126,7 @@ int main() {
 				CurrentFrame += 0.005*time;
 				if (CurrentFrame > 3) CurrentFrame -= 3;
 				p.sprite.setTextureRect(IntRect(91 * int(CurrentFrame), 188, 70.0, 76.0));
-				getPlayerCoord(p.getPositionX(), p.getPositionY());
+				getPlayerCoord(p.getPositionX(), p.getPositionY(),winsize.x,winsize.y);
 				if (!(Keyboard::isKeyPressed(Keyboard::LShift)))
 				{
 					p.speed = 0.1;
@@ -137,14 +138,14 @@ int main() {
 		} 
 		if (Keyboard::isKeyPressed(Keyboard::Space) && (p.onGround)) {
 			p.state = p.JUMP; p.dy = -0.5;  p.onGround = false; 
-			getPlayerCoord(p.getPositionX(), p.getPositionY());
+			getPlayerCoord(p.getPositionX(), p.getPositionY(), winsize.x, winsize.y);
 		 }
 		}
 
-		getPlayerCoord(p.getPositionX(), p.getPositionY());
+		getPlayerCoord(p.getPositionX(), p.getPositionY(), winsize.x, winsize.y);
 		//
 
-
+	
 	
 		
 		//update

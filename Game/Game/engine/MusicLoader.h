@@ -22,10 +22,6 @@ public:
 			music.setLoop(true);
 		}
 	}
-	/*void ResetVolume(float volume) {
-		music.setVolume(volume);
-	}*/
-
 	void StartPlay() {
 		music.play();
 	}
