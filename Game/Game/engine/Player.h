@@ -1,7 +1,8 @@
-#pragma once
+ #pragma once
 #include "Includes.h"
 #include "Level.h"
-#include "../LifeBar.h"
+#include "LifeBar.h"
+#include <Box2D/Box2D.h>
 
 using namespace sf;
 
@@ -12,7 +13,6 @@ private:
 public:
 	std::vector<Object> obj;
 	float  w, h, dx, dy, speed = 0;
-	int dir = 0;
 	enum StateObject { STAND, LEFT, RIGHT, JUMP };
 	StateObject state;
 	bool onGround;
@@ -22,12 +22,12 @@ public:
 	Sprite sprite;
 	bool life;
 	int hp;
-	int damage;
 	
+
 	Player(String file, float x, float y, Level &lvl, float w, float h, LifeBar bar)
 	{
-		this->hp = hp; this->damage = damage;
-		dx = 0; dy = 0; speed = 0; state = STAND;  obj = lvl.GetAllObjects();
+		this->hp = hp;
+		dx = 0; dy = 0; speed = 0; state = STAND;  obj = lvl.GetObjects("colis");
 		onGround = false;
 		this->w = w;
 		this->h = h;
@@ -40,18 +40,19 @@ public:
 		sprite.setTextureRect(IntRect(0, 192, w, h));
 		hp = 100;
 		life = true;
-	
+
 	}
 
+	
 
 
-	void update(float time)
+	void update(float time) 
 	{
 		switch (state)
 		{
 		case RIGHT: dx = speed; break;
 		case LEFT: dx = -speed; break;
-		case JUMP: break; 
+		case JUMP: break;
 		case STAND: break;
 		}
 
@@ -66,7 +67,10 @@ public:
 		if (hp <= 0) {
 			life = false;
 		}
+
+
 	}
+
 
 
 	FloatRect getRect() {
@@ -75,32 +79,25 @@ public:
 
 
 
+
 	void checkCollisionWithMap(float Dy, float Dx) {
-		for (int i = 0; i < obj.size(); i++)
-			if (getRect().intersects(obj[i].rect))
-			{
-				if (obj[i].name == "colis")
-				{
+		
+		for (size_t i = 0; i < obj.size(); i++) {
+			if (getRect().intersects(obj[i].rect)) {
+				
+			
+
 					if (Dy > 0) { y = obj[i].rect.top - h; onGround = true; dy = 0; }
 					if (Dy < 0) { y = obj[i].rect.top + obj[i].rect.height; dy = 0; }
 					if (Dx > 0) { x = obj[i].rect.left - w; dx = 0; }
 					if (Dx < 0) { x = obj[i].rect.left + obj[i].rect.width; dx = 0; }
 
-				}
-				else {
-					onGround = false;
-				}
-		
+				
+			
 			}
+		}
 	}
 
-	float getPositionX() {
-		return x;
-	}
-
-	float getPositionY() {
-		return y;
-	}
 
 };
 

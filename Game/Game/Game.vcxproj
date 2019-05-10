@@ -120,7 +120,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine\Coin.cpp" />
+    <ClCompile Include="engine\GameState.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="engine\SfmlObject.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />
     <ClCompile Include="TinyXML\tinyxml.cpp" />
     <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
@@ -131,14 +134,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\Camera.h" />
+    <ClInclude Include="engine\Coin.h" />
+    <ClInclude Include="engine\GameState.h" />
     <ClInclude Include="Includes.h" />
     <ClInclude Include="engine\Level.h" />
-    <ClInclude Include="LifeBar.h" />
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="engine\LifeBar.h" />
+    <ClInclude Include="engine\menu.h" />
     <ClInclude Include="engine\MusicLoader.h" />
     <ClInclude Include="engine\Player.h" />
     <ClInclude Include="engine\SoundLoader.h" />
     <ClInclude Include="engine\TextureLoader.h" />
+    <ClInclude Include="engine\SfmlObject.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />
   </ItemGroup>

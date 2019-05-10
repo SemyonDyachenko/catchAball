@@ -1,4 +1,5 @@
-﻿#include "Includes.h"
+﻿
+#include "Includes.h"
 
 using namespace sf;
 
@@ -25,6 +26,13 @@ void menu(RenderWindow & window) {
 	//menu2.setOrigin(menuTexture2.getSize().x / 2, menuTexture2.getSize().y / 2);
 	menu3.setPosition(window.getSize().x / 2, window.getSize().y/2 + 150);
 	menu3.setOrigin(menuTexture3.getSize().x / 2, menuTexture3.getSize().y / 2);
+
+	//sf::Text text;
+	//sf::Font font;
+	//sf::String string;
+	//string = "hello";
+	//text.setString(string);
+	//window.draw(text);
 
 	window.setMouseCursorVisible(false);
 	Texture cur;

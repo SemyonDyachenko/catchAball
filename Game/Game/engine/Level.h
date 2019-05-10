@@ -19,6 +19,7 @@ struct Object
 	sf::Rect<float> rect;//тип Rect с нецелыми значениями
 	std::map<std::string, std::string> properties;//создаём ассоциатиный массив. ключ - строковый тип, значение - строковый
 
+
 	sf::Sprite sprite;//объявили спрайт
 };
 
