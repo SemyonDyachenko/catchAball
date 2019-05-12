@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\game\git\Game\packages\Box2D.2.3.0\src\native\Build\vs2015\bin\x32\Debug;C:\game\git\Game\packages\Box2D.2.3.0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\game\git\Game\lib\GLUT</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\game\git\Game\packages\Box2D.2.3.0;C:\game\git\Game\packages\Box2D.2.3.0\src\native\Build\vs2015\bin\x32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Box2D.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\game\git\Game\lib\GLUT;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glut32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,10 +120,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="engine\Coin.cpp" />
-    <ClCompile Include="engine\GameState.cpp" />
-    <ClCompile Include="MainGame.cpp" />
-    <ClCompile Include="engine\SfmlObject.cpp" />
+    <ClCompile Include="entites\Entity.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="States\MainMenuState.cpp" />
+    <ClCompile Include="States\GameState.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="States\State.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />
     <ClCompile Include="TinyXML\tinyxml.cpp" />
     <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
@@ -133,18 +135,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\Camera.h" />
-    <ClInclude Include="engine\Coin.h" />
-    <ClInclude Include="engine\GameState.h" />
-    <ClInclude Include="Includes.h" />
-    <ClInclude Include="engine\Level.h" />
-    <ClInclude Include="engine\LifeBar.h" />
-    <ClInclude Include="engine\menu.h" />
-    <ClInclude Include="engine\MusicLoader.h" />
-    <ClInclude Include="engine\Player.h" />
-    <ClInclude Include="engine\SoundLoader.h" />
-    <ClInclude Include="engine\TextureLoader.h" />
-    <ClInclude Include="engine\SfmlObject.h" />
+    <ClInclude Include="entites\Entity.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="States\MainMenuState.h" />
+    <ClInclude Include="States\GameState.h" />
+    <ClInclude Include="States\State.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />
   </ItemGroup>
