@@ -16,8 +16,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-	this->states.push(new MainMenuState(this->window));
-	this->states.push(new GameState(this->window));
+	this->states.push(new MainMenuState(this->window,&this->states));
 }
 
 Game::Game()
@@ -47,13 +46,16 @@ void Game::endApplication()
 void Game::updateDeltaTime()
 {
 	this->time = this->clock.restart().asSeconds();
+	std::cout << time << std::endl;
 }
 
 void Game::updateEvents()
 {
 	while (this->window->pollEvent(this->event)) {
+
 		if (this->event.type == sf::Event::Closed)
 			this->window->close();
+
 	}
 }
 
@@ -78,22 +80,22 @@ void Game::update()
 		this->window->close();
 		this->endApplication();
 	}
-	
-	
+
 }
 
 void Game::render()
 {
 	//clear
-	window->clear();
+	this->window->clear();
 
 	//render here 
 	if (!this->states.empty()) {
 		this->states.top()->render(this->window);
 	}
+	
 
 	// display
-	window->display();
+	this->window->display();
 }
 
 void Game::run()

@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "States/GameState.h"
+#include "MainMenuState.h"
 
 
 class Game
@@ -9,21 +9,21 @@ class Game
 private:
 	sf::RenderWindow * window;
 	sf::Event event;
+
+	//time
 	sf::Clock clock;
 	float time;
-
-	std::stack<State*> states;
-
 	
-	std::map<std::string, int> supportedKeys;
-		
+	
+
+	std::stack<State*> states; // STATES		
 	
 	// window params ..
 	unsigned winSizeX; // width window
 	unsigned winSizeY; // height window
 	bool vertical_sync_enable; //vsync
 	std::string winTitle; // window title
-	unsigned FrameRateLimit; // fps limi
+	unsigned FrameRateLimit; // fps limit
 
 
 	//init

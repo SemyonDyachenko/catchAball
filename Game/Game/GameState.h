@@ -1,21 +1,21 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include "MainMenuState.h"
 
-class GameState  : public State
+#include "State.h"
+
+
+class GameState :public State
 {
 private:
-	Entity player;
-
+	Entity * player;
 
 	//funcs
-	//void initKeybinds();
+	void initTextures();
 public:
-	GameState(sf::RenderWindow * window);
+	GameState(sf::RenderWindow * window, std::stack<State*>*states);
 	virtual ~GameState();
 
-	
 
 	//funcs
 	void endState();
@@ -26,4 +26,3 @@ public:
 };
 
 #endif
-
