@@ -1,19 +1,21 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <map>
+#include <stack>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <math.h>
+#include <list>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
-#include <SFML/OpenGL.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 
-#include <glut.h>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <stack>
-#include  <map>
+
 
 class Entity 
 {
@@ -22,7 +24,7 @@ private:
 protected:
 	sf::Sprite sprite;
 	float speed;
-	float currentFrame;
+	double currentFrame;
 	sf::Texture texture;
 	float dx, dy;
 	enum EntityMovement { STAY, LEFT, RIGHT, UP, DOWN };
@@ -32,8 +34,6 @@ protected:
 	float positionY;
 	sf::Time animationTime;
 	sf::Clock animationClock;
-	int hp;
-
 
 	//init
 	void initDefaultVariables();
@@ -48,9 +48,11 @@ public:
 	float getPositionX();
 	float getPositionY();
 
+	//levels
 
 	//movement functions
-	void movement();
+	
+	void movement(const float& dt);
 	void loseHp();
 	void getHp();
 

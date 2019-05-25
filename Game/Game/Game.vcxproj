@@ -150,6 +150,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="State.h" />

@@ -45,8 +45,10 @@ void Game::endApplication()
 
 void Game::updateDeltaTime()
 {
-	this->time = this->clock.restart().asSeconds();
-	std::cout << time << std::endl;
+	this->time = this->clock.getElapsedTime().asMicroseconds();
+	clock.restart();
+	time = time / 800;
+	
 }
 
 void Game::updateEvents()
