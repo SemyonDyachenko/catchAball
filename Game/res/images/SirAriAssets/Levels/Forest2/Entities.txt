@@ -1,0 +1,9 @@
+LoadingZone//Forest1//12//0//20//1000//1960//1680
+RobotSpawner//1370//635//64//64
+BasicRobot//871//319
+RobotDasher//601//917
+RobotSpawner//1685//1134//64//64
+RobotDasher//1405//1655
+TreeGuy//1763//285
+LoadingZone//ForestGrove//2042//0//12//520//60//1850
+LoadingZone//ForestVillage//2042//600//12//520//100//1180

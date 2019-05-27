@@ -18,6 +18,7 @@ void Entity::initDefaultVariables()
 	this->speed = 0.f;
 	//time
 	this->animationTime = sf::milliseconds(80);
+	this->level.LoadFromFile("map.tmx");
 }
 
 Entity::Entity(float x,float y)
@@ -33,17 +34,17 @@ Entity::~Entity()
 
 }
 
- float Entity::getPositionX() 
+float Entity::getPositionX() 
 {
 	return this->positionX;
 }
 
- float Entity::getPositionY() 
+float Entity::getPositionY() 
 {
 	return this->positionY;
 }
 
- void Entity::movement(const float & dt)
+void Entity::movement(const float & dt)
  {
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		 this->moveDir = LEFT;
@@ -76,7 +77,7 @@ Entity::~Entity()
  }
 
 
- void Entity::update(const float & dt)
+void Entity::update(const float & dt)
 {
 	
 	 movement(dt);
@@ -104,6 +105,7 @@ Entity::~Entity()
 
 void Entity::render(sf::RenderTarget * target)
 {
+	level.Draw(target);
 	target->draw(this->sprite);
 }
 

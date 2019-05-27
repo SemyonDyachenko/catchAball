@@ -2,8 +2,6 @@
 
 
 
-
-
 GameState::GameState(sf::RenderWindow * window, std::stack<State*>*states) : State(window, states)
 {
 	this->player = new Entity(400,200);

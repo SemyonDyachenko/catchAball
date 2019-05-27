@@ -1,0 +1,8 @@
+Wall//515//800//60//128//-15728616--<~~1
+Dummy//320//680//0--<~~1
+BasicRobot//800//900-->~~0
+BasicRobot//705//680
+BasicRobot//896//680
+BasicSpearPickup//224//780--<~~1
+ParticleOverlay//0//0.9
+LoadingZone//Forest1//772//196//56//56//1664//384

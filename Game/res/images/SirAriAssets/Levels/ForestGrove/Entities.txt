@@ -1,0 +1,2 @@
+LoadingZone//Forest2//5//1800//10//300//1980//285
+DarkPortal//1024//1100

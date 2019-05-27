@@ -1,0 +1,2 @@
+LoadingZone//Void1//400//400//100//100//224//224
+BasicRobot//400//200

@@ -5,7 +5,7 @@ void Game::initWindow()
 {
 	/* here init and create window */
 	this->vertical_sync_enable = false;
-	this->FrameRateLimit = 120;
+	this->FrameRateLimit = 60;
 	this->winSizeX = 800;
 	this->winSizeY = 600;
 	this->winTitle = "Sfml game";
@@ -45,7 +45,7 @@ void Game::endApplication()
 
 void Game::updateDeltaTime()
 {
-	this->time = this->clock.getElapsedTime().asMicroseconds();
+	this->time = float(this->clock.getElapsedTime().asMicroseconds());
 	clock.restart();
 	time = time / 800;
 	
