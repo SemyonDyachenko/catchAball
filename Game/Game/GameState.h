@@ -9,7 +9,7 @@ class GameState :public State
 {
 private:
 	Entity * player;
-
+	sf::RenderWindow * window;
 	//funcs
 	void initTextures();
 public:
@@ -19,7 +19,6 @@ public:
 
 	//funcs
 	void endState();
-
 	void updateInput(const float& dt);
 	void update(const float & dt);
 	void render(sf::RenderTarget *target = nullptr);

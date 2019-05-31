@@ -13,6 +13,7 @@ private:
 	sf::RectangleShape background;
 	std::map<std::string, Button*> buttons;
 
+
 	//funcs
 	void initVariables();
 	void initBackground();

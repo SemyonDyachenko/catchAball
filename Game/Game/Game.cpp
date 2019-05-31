@@ -8,7 +8,7 @@ void Game::initWindow()
 	this->FrameRateLimit = 60;
 	this->winSizeX = 800;
 	this->winSizeY = 600;
-	this->winTitle = "Sfml game";
+	this->winTitle = "Sfml rpg";
 	this->window = new sf::RenderWindow(sf::VideoMode(winSizeX, winSizeY), winTitle);
 	this->window->setVerticalSyncEnabled(this->vertical_sync_enable);
 	this->window->setFramerateLimit(this->FrameRateLimit);
@@ -82,7 +82,6 @@ void Game::update()
 		this->window->close();
 		this->endApplication();
 	}
-
 }
 
 void Game::render()

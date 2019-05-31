@@ -13,7 +13,7 @@ void MainMenuState::initBackground()
 
 
 
-	if (!this->backgroundTexture.loadFromFile("../res/images/background.png"))
+	if (!this->backgroundTexture.loadFromFile("../res/images/background.jpg"))
 	{
 		std::cout << "ERROR in GAMEMENUSTATE (initBackground):: ERROR LOAD TEXTURE FROM FILE";
 	}
@@ -109,7 +109,6 @@ void MainMenuState::update(const float & dt)
 {
 	this->updateMousePosition();
 	this->updateButtons();
-
 }
 
 void MainMenuState::render(sf::RenderTarget * target)
