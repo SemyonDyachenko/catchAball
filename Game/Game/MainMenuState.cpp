@@ -96,11 +96,11 @@ void MainMenuState::updateButtons()
 
 }
 
-void MainMenuState::renderButtons(sf::RenderTarget * target)
+void MainMenuState::renderButtons(sf::RenderWindow * window)
 {
 	for (auto &it : this->buttons)
 	{
-		it.second->render(target);
+		it.second->render(window);
 	}
 
 }
@@ -111,12 +111,12 @@ void MainMenuState::update(const float & dt)
 	this->updateButtons();
 }
 
-void MainMenuState::render(sf::RenderTarget * target)
+void MainMenuState::render(sf::RenderWindow * window)
 {
-	if (!target)
-		target = this->window;
+	if (!window)
+		window = this->window;
 
 
-	target->draw(background);
-	this->renderButtons(target);
+	window->draw(background);
+	this->renderButtons(window);
 }

@@ -4,21 +4,7 @@
 
 
 
-#include <map>
-#include <stack>
-#include <vector>
-#include <string>
-#include <iostream>
-#include <math.h>
-#include <list>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/System.hpp>
-#include "Level.h"
-
+#include "Enemy.h"
 
 class Entity 
 {
@@ -32,15 +18,18 @@ protected:
 	float dx, dy, weight, height;
 	enum EntityMovement { STAY, LEFT, RIGHT, UP, DOWN };
 	EntityMovement moveDir;
+	bool onGround;
 	sf::Image img;
+	float standAnimationFrame;
 	float positionX;
 	float positionY;
 	sf::Time animationTime;
+	Level  level;
 	sf::Clock animationClock;
 	//init
 	void initDefaultVariables();
 public:
-	Entity(float x, float y);
+	Entity();
 	virtual ~Entity();
 
 
@@ -65,7 +54,6 @@ public:
 
 
 	//level
-	Level level;
 	std::vector<Object> collision;
 	Level getLevel();
 

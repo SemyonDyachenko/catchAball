@@ -29,9 +29,9 @@ public:
 	//funcs
 	void updateInput(const float& dt);
 	void updateButtons();
-	void renderButtons(sf::RenderTarget * target = nullptr);
+	void renderButtons(sf::RenderWindow * window = nullptr);
 	void update(const float& dt);
-	void render(sf::RenderTarget * target = nullptr);
+	void render(sf::RenderWindow * window = nullptr);
 };
 
 

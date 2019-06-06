@@ -41,7 +41,7 @@ public:
 	virtual void updateMousePosition();
 	virtual void updateInput(const float& dt) = 0; // функция которая отвечает за обновление входящей информации 
 	virtual void update(const float& dt) = 0; // апдейт принимает время delta time (Dt)
-	virtual void render(sf::RenderTarget *target = nullptr) = 0; // функция рендера
+	virtual void render(sf::RenderWindow *RenderWindow = nullptr) = 0; // функция рендера
 };
 
 #endif

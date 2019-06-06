@@ -8,7 +8,7 @@
 class GameState :public State
 {
 private:
-	Entity * player;
+	Entity  player;
 	sf::RenderWindow * window;
 	//funcs
 	void initTextures();
@@ -21,7 +21,7 @@ public:
 	void endState();
 	void updateInput(const float& dt);
 	void update(const float & dt);
-	void render(sf::RenderTarget *target = nullptr);
+	void render(sf::RenderWindow *window = nullptr);
 };
 
 #endif

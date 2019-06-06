@@ -16,6 +16,7 @@ void Entity::initDefaultVariables()
 	this->sprite.setTexture(texture);
 	this->sprite.setTextureRect(sf::IntRect(weight, height, weight, height));
 	this->currentFrame = 0;
+	this->standAnimationFrame = 0;
 	moveDir = STAY;
 	this->dx = 0; this->dy = 0;
 	this->speed = 0.f;
@@ -23,14 +24,15 @@ void Entity::initDefaultVariables()
 	this->animationTime = sf::milliseconds(80);
 	this->level.LoadFromFile("map.tmx");
 	collision = this->level.GetObjects("collis");
+	onGround = false;
 }
 
-Entity::Entity(float x,float y)
+Entity::Entity()
 {
-	this->positionX = x;
-	this->positionY = y;
-	sprite.setPosition(this->positionX,this->positionY);
 	this->initDefaultVariables();
+	this->positionX = this->level.GetObject("player").rect.left;
+	this->positionY = this->level.GetObject("player").rect.top;
+	sprite.setPosition(this->positionX, this->positionY);
 }
 
 Entity::~Entity()
@@ -67,9 +69,9 @@ void Entity::movement(const float & dt)
 		 this->moveDir = LEFT;
 		 this->currentFrame += 0.005 * dt;
 		 if (this->currentFrame > 3) currentFrame -= 3;
-		 this->sprite.setTextureRect(sf::IntRect(96 * int(this->currentFrame), 96, 96, 96)); //проходимс€ по координатам ’. получаетс€ 0, 96,96*2 и оп€ть 0
+		 this->sprite.setTextureRect(sf::IntRect(96 * int(this->currentFrame), 96, 96, 90)); //проходимс€ по координатам ’. получаетс€ 0, 96,96*2 и оп€ть 0
 		 this->speed = 0.35f;
-		 playerCoordsForView(this->sprite.getPosition().x, this->sprite.getPosition().y);
+		
 	 } else 
 	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		 this->moveDir = RIGHT;
@@ -77,24 +79,12 @@ void Entity::movement(const float & dt)
 		 if (this->currentFrame > 3) currentFrame -= 3;
 		 this->sprite.setTextureRect(sf::IntRect(96 * int(this->currentFrame), 192, 96, 96)); //проходимс€ по координатам ’. получаетс€ 0, 96,96*2 и оп€ть 0
 		 this->speed = 0.35f;
-		 playerCoordsForView(this->sprite.getPosition().x, this->sprite.getPosition().y);
-	 } else 
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		 this->moveDir = UP;
-		 this->currentFrame += 0.005 * dt;
-		 if (this->currentFrame > 3) currentFrame -= 3;
-		 this->sprite.setTextureRect(sf::IntRect(96 * int(this->currentFrame), 288, 96, 96)); //проходимс€ по координатам ’. получаетс€ 0, 96,96*2 и оп€ть 0
-		 this->speed = 0.35f;
-		 playerCoordsForView(this->sprite.getPosition().x, this->sprite.getPosition().y);
-	 } else
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		 this->moveDir = DOWN;
-		 this->currentFrame += 0.005 * dt;
-		 if (this->currentFrame > 3) currentFrame -= 3;
-		 this->sprite.setTextureRect(sf::IntRect(96 * int(this->currentFrame), 0, 96, 96)); //проходимс€ по координатам ’. получаетс€ 0, 96,96*2 и оп€ть 0
-		 this->speed = 0.35f;
-		 playerCoordsForView(this->sprite.getPosition().x, this->sprite.getPosition().y);
+		
 	 }
+	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (onGround)) {
+		 this->dy = -0.4;  onGround = false;
+	 }
+	 playerCoordsForView(this->sprite.getPosition().x, this->sprite.getPosition().y);
  }
 
 Level Entity::getLevel()
@@ -107,29 +97,32 @@ void Entity::checkCollisionWithMap(float Dx, float Dy)
 {
 	for (size_t i = 0; i < collision.size(); i++) {
 		if (this->getRect().intersects(collision[i].rect)) {
-			if (Dy > 0) { positionY = collision[i].rect.top - height;  dy = 0;}
-			if (Dy < 0) { positionY = collision[i].rect.top + collision[i].rect.height;   dy = 0; }
-			if (Dx > 0) { positionX = collision[i].rect.left - weight; }
-			if (Dx < 0) { positionX = collision[i].rect.left + collision[i].rect.width; }
+			if (Dy > 0) { positionY = collision[i].rect.top - height; dy = 0;  onGround = true; }
+			if (Dy < 0) { positionY = collision[i].rect.top + collision[i].rect.height;  dy = 0; }
+			if (Dx > 0) { positionX = collision[i].rect.left - weight; dx = 0; }
+			if (Dx < 0) { positionX = collision[i].rect.left + collision[i].rect.width; dx = 0; }
 		}
 }
 	}
 
 void Entity::update(const float & dt)
 {
-	
-	 movement(dt);
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::A) || !sf::Keyboard::isKeyPressed(sf::Keyboard::D) || !sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		
+	}
+	movement(dt);
 	switch (this->moveDir)
 	{
 	case Entity::STAY:
 		break;
-	case Entity::LEFT: this->dx = -speed; this->dy = 0;
+	case Entity::LEFT: this->dx = -speed;
 		break;
-	case Entity::RIGHT: this->dx = speed; this->dy = 0;
+	case Entity::RIGHT: this->dx = speed; 
 		break;
-	case Entity::UP: this->dx = 0; this->dy = -speed;
+	case Entity::UP: 
 		break;
-	case Entity::DOWN: this->dx = 0; this->dy = speed;
+	case Entity::DOWN: 
 		break;
 	default:
 		break;
@@ -137,10 +130,14 @@ void Entity::update(const float & dt)
 
 	this->positionX += this->dx * dt;
 	checkCollisionWithMap(this->dx, 0);
-	this->positionY += this->dy * dt; 
+	this->positionY += dy * dt;
 	checkCollisionWithMap(0, this->dy);
-	this->sprite.setPosition(this->positionX, this->positionY);
 	this->speed = 0.f;
+	this->sprite.setPosition(this->positionX, this->positionY);
+	this->dy = dy + 0.0015*dt; checkCollisionWithMap(0, this->dy); 
+	
+	
+	
 }
 
 void Entity::render(sf::RenderTarget * target)

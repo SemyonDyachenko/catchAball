@@ -4,9 +4,8 @@
 
 GameState::GameState(sf::RenderWindow * window, std::stack<State*>*states) : State(window, states)
 {
-	this->player = new Entity(300,200);
 
-	this->player->view.reset(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
+	this->player.view.reset(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y));
 	this->window = window;
 }
 
@@ -14,7 +13,7 @@ GameState::GameState(sf::RenderWindow * window, std::stack<State*>*states) : Sta
 GameState::~GameState()
 {
 	
-	delete this->player;
+	//delete this->player;
 	this->window->setView(window->getDefaultView());
 }
 
@@ -35,16 +34,16 @@ void GameState::update(const float& dt)
 {
 	this->updateMousePosition();
 	this->updateInput(dt);
-	this->player->update(dt);
-	this->window->setView(this->player->view);
+	this->player.update(dt);
+	this->window->setView(this->player.view);
 }
 
-void GameState::render(sf::RenderTarget *target)
+void GameState::render(sf::RenderWindow * window)
 {
-	if (!target)
-		target = this->window;
+	if (!window)
+		window = this->window;
 
-	this->player->render(target);
+	this->player.render(window);
 	
 }
 
