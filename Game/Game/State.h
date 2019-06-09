@@ -39,9 +39,9 @@ public:
 	//функции которые обязательно должны быть переопределены
 	virtual void endState() = 0; //завершение текущего состояния
 	virtual void updateMousePosition();
-	virtual void updateInput(const float& dt) = 0; // функция которая отвечает за обновление входящей информации 
-	virtual void update(const float& dt) = 0; // апдейт принимает время delta time (Dt)
-	virtual void render(sf::RenderWindow *RenderWindow = nullptr) = 0; // функция рендера
+	virtual void updateInput(const float& time) = 0; // функция которая отвечает за обновление входящей информации 
+	virtual void update(const float& time) = 0; // апдейт принимает время delta time (Dt)
+	virtual void render(sf::RenderWindow * window) = 0; // функция рендера
 };
 
 #endif

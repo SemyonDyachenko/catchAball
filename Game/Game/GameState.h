@@ -8,8 +8,14 @@
 class GameState :public State
 {
 private:
-	Entity  player;
+	Entity *  player;
 	sf::RenderWindow * window;
+	sf::RectangleShape backgroundShape;
+	sf::Texture backgroundTexture;
+
+	//mouse
+	sf::Vector2i pixelPos;
+	sf::Vector2f pos;
 	//funcs
 	void initTextures();
 public:
@@ -19,9 +25,9 @@ public:
 
 	//funcs
 	void endState();
-	void updateInput(const float& dt);
-	void update(const float & dt);
-	void render(sf::RenderWindow *window = nullptr);
+	void updateInput(const float& time);
+	void update(const float & time);
+	void render(sf::RenderWindow *window);
 };
 
 #endif

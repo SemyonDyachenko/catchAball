@@ -27,11 +27,11 @@ public:
 	void endState();
 
 	//funcs
-	void updateInput(const float& dt);
+	void updateInput(const float& time);
 	void updateButtons();
-	void renderButtons(sf::RenderWindow * window = nullptr);
-	void update(const float& dt);
-	void render(sf::RenderWindow * window = nullptr);
+	void renderButtons(sf::RenderWindow * window);
+	void update(const float& time);
+	void render(sf::RenderWindow * window);
 };
 
 

@@ -2,9 +2,8 @@
 #define ENTITY_H
 
 
+#include "Ball.h"
 
-
-#include "Enemy.h"
 
 class Entity 
 {
@@ -13,23 +12,18 @@ private:
 protected:
 	sf::Sprite sprite;
 	float speed;
-	double currentFrame;
 	sf::Texture texture;
-	float dx, dy, weight, height;
+	float dx, dy;
 	enum EntityMovement { STAY, LEFT, RIGHT, UP, DOWN };
 	EntityMovement moveDir;
 	bool onGround;
 	sf::Image img;
-	float standAnimationFrame;
 	float positionX;
 	float positionY;
-	sf::Time animationTime;
-	Level  level;
-	sf::Clock animationClock;
 	//init
 	void initDefaultVariables();
 public:
-	Entity();
+	Entity(float x,float y);
 	virtual ~Entity();
 
 
@@ -42,7 +36,7 @@ public:
 	//levels
 
 	//camera
-	sf::View playerCoordsForView(float x, float y);
+	
 
 	//movement functions
 	
@@ -51,17 +45,16 @@ public:
 	void movement(const float& dt);
 	void loseHp();
 	void getHp();
+	void setPosition(float x, float y);
 
 
 	//level
-	std::vector<Object> collision;
-	Level getLevel();
 
 
 	// update , render
-	void checkCollisionWithMap(float Dx, float Dy);
-	virtual void update(const float& dt);
-	virtual void render(sf::RenderTarget * target = nullptr);
+	void checkCollisionWithBall(float Dx, float Dy);
+	virtual void update(const float& time);
+	virtual void render(sf::RenderWindow * window);
 
 };
 

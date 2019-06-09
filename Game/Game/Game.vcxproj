@@ -132,11 +132,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="Level.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -150,11 +149,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="Button.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="State.h" />
