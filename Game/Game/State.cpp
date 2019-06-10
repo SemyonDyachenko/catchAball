@@ -5,10 +5,10 @@
 
 State::State(sf::RenderWindow * window,std::stack<State*>* states)
 {
-	this->window = window;
-	this->quit = false; // ïî óìîë÷àíèþ çíà÷åíèå âûõîäà èç ñîñòîÿíèÿ ðàâíî = false
-	this->states = states;
-	//this->supportedKeys = supportedKeys;
+    this->window = window;
+    this->quit = false; // Ã¯Ã® Ã³Ã¬Ã®Ã«Ã·Ã Ã­Ã¨Ã¾ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥ Ã¢Ã»ÃµÃ®Ã¤Ã  Ã¨Ã§ Ã±Ã®Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¿ Ã°Ã Ã¢Ã­Ã® = false
+    this->states = states;
+    //this->supportedKeys = supportedKeys;
 }
 
 State::~State()
@@ -17,24 +17,22 @@ State::~State()
 
 const bool & State::getQuit() const
 {
-	return this->quit; // âîçðàùàåì òîêóùåå ñîñòîÿíèå ïåðåìåííîé
+    return this->quit; // Ã¢Ã®Ã§Ã°Ã Ã¹Ã Ã¥Ã¬ Ã²Ã®ÃªÃ³Ã¹Ã¥Ã¥ Ã±Ã®Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¥ Ã¯Ã¥Ã°Ã¥Ã¬Ã¥Ã­Ã­Ã®Ã©
 }
 
 void State::checkForQuit()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) /* åñëè íàæàòà êëàâèøà escape òî ñîñòîÿíèå ïåðåìåííîé âûõîäà  = true òî åñòü ìû âûøëè èç ñîñòîÿíèÿ (state) */
-	{
-		this->quit = true;
-	}
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) /* Ã¥Ã±Ã«Ã¨ Ã­Ã Ã¦Ã Ã²Ã  ÃªÃ«Ã Ã¢Ã¨Ã¸Ã  escape Ã²Ã® Ã±Ã®Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¥ Ã¯Ã¥Ã°Ã¥Ã¬Ã¥Ã­Ã­Ã®Ã© Ã¢Ã»ÃµÃ®Ã¤Ã   = true Ã²Ã® Ã¥Ã±Ã²Ã¼ Ã¬Ã» Ã¢Ã»Ã¸Ã«Ã¨ Ã¨Ã§ Ã±Ã®Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¿ (state) */
+    {
+        this->quit = true;
+    }
 }
 
 
 void State::updateMousePosition()
 {
-	this->mousePosScreen = sf::Mouse::getPosition();
-	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
-	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+    this->mousePosScreen = sf::Mouse::getPosition();
+    this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+    this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
 
 }
-
-

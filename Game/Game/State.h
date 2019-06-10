@@ -10,39 +10,38 @@ class State
 private:
 
 protected:
-	std::stack<State*>* states;
-	sf::RenderWindow * window; // окно
-	//std::map<std::string, int>* supportedKeys;
-	//std::map<std::string, int> keybinds;
-	bool quit; // переменая отвечающая за нахождении в текущем стостоянии (state)
-	
-	//res
-	sf::Vector2i mousePosScreen;
-	sf::Vector2i mousePosWindow;
-	sf::Vector2f mousePosView;
+    std::stack<State*>* states;
+    sf::RenderWindow * window; // Г®ГЄГ­Г®
+    //std::map<std::string, int>* supportedKeys;
+    //std::map<std::string, int> keybinds;
+    bool quit; // ГЇГҐГ°ГҐГ¬ГҐГ­Г Гї Г®ГІГўГҐГ·Г ГѕГ№Г Гї Г§Г  Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Гў ГІГҐГЄГіГ№ГҐГ¬ Г±ГІГ®Г±ГІГ®ГїГ­ГЁГЁ (state)
+
+    //res
+    sf::Vector2i mousePosScreen;
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
 
 
 
-	std::vector<sf::Texture> textures;
+    std::vector<sf::Texture> textures;
 
-	//funcs
-	//virtual void keybinds() = 0;
+    //funcs
+    //virtual void keybinds() = 0;
 
 public:
-	State(sf::RenderWindow * window,std::stack<State*>* states); // конструктор принимает на вход sfml окно
-	virtual ~State();// виртуальный диструктор
+    State(sf::RenderWindow * window,std::stack<State*>* states); // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЇГ°ГЁГ­ГЁГ¬Г ГҐГІ Г­Г  ГўГµГ®Г¤ sfml Г®ГЄГ­Г®
+    virtual ~State();// ГўГЁГ°ГІГіГ Г«ГјГ­Г»Г© Г¤ГЁГ±ГІГ°ГіГЄГІГ®Г°
 
-	const bool& getQuit() const; // получить значение quit выхода из состояния
+    const bool& getQuit() const; // ГЇГ®Г«ГіГ·ГЁГІГј Г§Г­Г Г·ГҐГ­ГЁГҐ quit ГўГ»ГµГ®Г¤Г  ГЁГ§ Г±Г®Г±ГІГ®ГїГ­ГЁГї
 
-	virtual void checkForQuit(); // функция проверки на конец состояния
+    virtual void checkForQuit(); // ГґГіГ­ГЄГ¶ГЁГї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­Г  ГЄГ®Г­ГҐГ¶ Г±Г®Г±ГІГ®ГїГ­ГЁГї
 
-	//функции которые обязательно должны быть переопределены
-	virtual void endState() = 0; //завершение текущего состояния
-	virtual void updateMousePosition();
-	virtual void updateInput(const float& time) = 0; // функция которая отвечает за обновление входящей информации 
-	virtual void update(const float& time) = 0; // апдейт принимает время delta time (Dt)
-	virtual void render(sf::RenderWindow * window) = 0; // функция рендера
+    //ГґГіГ­ГЄГ¶ГЁГЁ ГЄГ®ГІГ®Г°Г»ГҐ Г®ГЎГїГ§Г ГІГҐГ«ГјГ­Г® Г¤Г®Г«Г¦Г­Г» ГЎГ»ГІГј ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г»
+    virtual void endState() = 0; //Г§Г ГўГҐГ°ГёГҐГ­ГЁГҐ ГІГҐГЄГіГ№ГҐГЈГ® Г±Г®Г±ГІГ®ГїГ­ГЁГї
+    virtual void updateMousePosition();
+    virtual void updateInput(const float& time) = 0; // ГґГіГ­ГЄГ¶ГЁГї ГЄГ®ГІГ®Г°Г Гї Г®ГІГўГҐГ·Г ГҐГІ Г§Г  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГўГµГ®Г¤ГїГ№ГҐГ© ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ
+    virtual void update(const float& time) = 0; // Г ГЇГ¤ГҐГ©ГІ ГЇГ°ГЁГ­ГЁГ¬Г ГҐГІ ГўГ°ГҐГ¬Гї delta time (Dt)
+    virtual void render(sf::RenderWindow * window) = 0; // ГґГіГ­ГЄГ¶ГЁГї Г°ГҐГ­Г¤ГҐГ°Г 
 };
 
 #endif
-

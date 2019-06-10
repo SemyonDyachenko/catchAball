@@ -8,30 +8,30 @@
 class MainMenuState : public State
 {
 private:
-	sf::Texture backgroundTexture;
-	sf::Font font;
-	sf::RectangleShape background;
-	std::map<std::string, Button*> buttons;
+    sf::Texture backgroundTexture;
+    sf::Font font;
+    sf::RectangleShape background;
+    std::map<std::string, Button*> buttons;
 
 
-	//funcs
-	void initVariables();
-	void initBackground();
-	void initFonts();
-	void initButtons();
+    //funcs
+    void initVariables();
+    void initBackground();
+    void initFonts();
+    void initButtons();
 public:
-	MainMenuState(sf::RenderWindow * window, std::stack<State*>* states);
-	virtual ~MainMenuState();
+    MainMenuState(sf::RenderWindow * window, std::stack<State*>* states);
+    virtual ~MainMenuState();
 
 
-	void endState();
+    void endState();
 
-	//funcs
-	void updateInput(const float& time);
-	void updateButtons();
-	void renderButtons(sf::RenderWindow * window);
-	void update(const float& time);
-	void render(sf::RenderWindow * window);
+    //funcs
+    void updateInput(const float& time);
+    void updateButtons();
+    void renderButtons(sf::RenderWindow * window);
+    void update(const float& time);
+    void render(sf::RenderWindow * window);
 };
 
 
